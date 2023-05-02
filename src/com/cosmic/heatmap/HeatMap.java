@@ -7,6 +7,8 @@ import java.awt.*;
 import java.awt.image.BufferedImage;
 import java.text.DecimalFormat;
 
+// How does one optimize this
+
 public class HeatMap extends BufferedImage {
 
     double xMin, xMax, yMin, yMax;
@@ -35,17 +37,19 @@ public class HeatMap extends BufferedImage {
         slopes = new double[getWidth()][getHeight()];
         colors = new int[getWidth()][getHeight()];
 
-        computeSlopes();
+        beginComputation();
     }
 
-    public void computeSlopes() {
+    public void beginComputation() {
         int color;
         double xInt = (xMax - xMin) / (getWidth() - 1);
         double yInt = (yMax - yMin) / (getHeight() - 1);
 
+        Timer timer = new Timer("Map", Main.window);
+
         for (int xV = 0; xV < getWidth(); xV++) {
             for (int yV = 0; yV < getHeight(); yV++) {
-                double decimal = ((double)(xV) * getWidth() + yV) / (getWidth() * getHeight());
+                double decimal = ((double) (xV) * getWidth() + yV) / (getWidth() * getHeight());
                 System.out.println(f.format(decimal * 100) + "%");
 
                 x.setArgumentValue(xMin + xV * xInt);
@@ -56,10 +60,9 @@ public class HeatMap extends BufferedImage {
                 color = scaleColor(slopes[xV][yV]).getRGB();
                 colors[xV][yV] = color;
                 this.setRGB(xV, getHeight() - yV - 1, color);
-//                color = scaleColor(expression.calculate()).getRGB();
-//                this.setRGB(xV, getHeight() - yV - 1, color);
             }
         }
+        timer.end();
     }
 
     public void computeColors() {
@@ -84,11 +87,17 @@ public class HeatMap extends BufferedImage {
         return n2 < 0 ? 0 : Math.min(n2, 255);
     }
 
-    public void update(double sensitivity) {
-        Timer timer = new Timer("Update", Main.window);
+    public void updateSensitivity(double sensitivity) {
+        Timer timer = new Timer("Sensitivity", Main.window);
         this.sensitivity = sensitivity;
         computeColors();
         timer.end();
+    }
+
+    public void updateAll(String expression, double sensitivity) {
+        this.expression.setExpressionString(expression);
+        this.sensitivity = sensitivity;
+        beginComputation();
     }
 
 }

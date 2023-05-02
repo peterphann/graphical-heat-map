@@ -13,7 +13,7 @@ public class Main {
 
         window = new Window();
 
-        window.createImage();
+        window.createMap();
         window.setVisible(true);
     }
 
