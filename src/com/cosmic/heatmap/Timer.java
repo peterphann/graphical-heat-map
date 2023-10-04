@@ -3,7 +3,6 @@ package com.cosmic.heatmap;
 public class Timer {
 
     private long start;
-    private long end;
     private String operation;
     private Window window;
 
@@ -14,10 +13,8 @@ public class Timer {
     }
 
     public long end() {
-        end = System.nanoTime();
-        long ms = (end - start) / 1000000;
-        System.out.println(operation + " took " + ms + " ms to complete");
-        window.setTitle(operation + " took " + ms + " ms to complete");
+        long ms = (System.nanoTime() - start) / 1000000;
+        System.out.println(operation + ": " + ms + " ms");
         return ms;
     }
 
