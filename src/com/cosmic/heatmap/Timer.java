@@ -4,11 +4,9 @@ public class Timer {
 
     private long start;
     private String operation;
-    private Window window;
 
     public Timer(String operation, Window window) {
         this.operation = operation;
-        this.window = window;
         start = System.nanoTime();
     }
 

@@ -16,7 +16,6 @@ public class HeatMap extends BufferedImage {
     private Expression expression;
     private Argument x, y;
 
-    private boolean colored;
     private int mode;
 
     private static DecimalFormat f = new DecimalFormat("#.##");
