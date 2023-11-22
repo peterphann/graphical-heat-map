@@ -6,7 +6,7 @@ on Desmos before, but the limitations of lists and the sheer amount of lag made 
 In all honestly I'm not even sure if this should be called a heat map, since I can't really find a term for this sort of thing online. Maybe someone
 can enlighten me. Who knows ¯\_(ツ)_/¯
 
-<img src="https://i.imgur.com/WvoW89G.gif" width="500" height="500"/>
+<img src="https://i.imgur.com/hcByYAN.gif" width="500" height="500"/>
 
 ### Dependencies
 - flatlaf: https://www.formdev.com/flatlaf/
